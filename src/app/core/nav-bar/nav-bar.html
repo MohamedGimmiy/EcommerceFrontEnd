@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-primary" >
+  <div class="container">
+    <a routerLink="/" class="navbar-brand">
+      <img src="../../../../public/favicon.ico" alt="Logo" class="logo" />
+      <i class="text-white">E-Commerce</i>
+    </a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a routerLink="/" class="nav-link" 
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="nav-item"><a routerLink="/shop" class="nav-link" routerLinkActive="active">Shopping</a></li>
+        <li class="nav-item"><a href="" class="nav-link">About us</a></li>
+        <li class="nav-item"><a href="" class="nav-link">Best Seller</a></li>
+      </ul>
+      <form  class="form-inline mx-auto">
+        <div class="input-group">
+            <input type="text" class="form-control" name="" id="" placeholder="Search">
+            <div class="input-group-append ml-2" style="margin-left: 3px;">
+                <button class="btn btn-light"> <i class="material-icons">search</i></button>
+            </div>
+        </div>
+      </form>
+      <ul class="navbar-nav ml-auto align-items-center">
+        <li class="nav-item">
+          <a  class="nav-link">
+            <i class="material-icons">shopping_cart</i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="ToggleDropdown()"  class="nav-link dropdown-toggle" id="navbarDropdown">
+            <i class="material-icons">account_circle</i>
+          </a>
+        </li>
+        <div [ngClass]="{'show': visible}" class="dropdown-menu dropdown-menu-right">
+            <a href="" class="dropdown-item">Register <i class="fa fa-user-plus"></i> </a>
+            <a href="" class="dropdown-item">Login <i class="fa fa-sign-in"></i></a>
+            <a href="" class="dropdown-item">My Order <i class="fa fa-list"></i></a>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>

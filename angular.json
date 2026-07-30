@@ -55,7 +55,11 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css",
+              "./node_modules/ngx-spinner/animations/square-jelly-box.css",
+              "./node_modules/ngx-toastr/toastr.css"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
