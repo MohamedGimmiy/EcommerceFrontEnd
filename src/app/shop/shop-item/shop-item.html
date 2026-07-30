@@ -37,7 +37,7 @@
         <i class="fa fa-bookmark"></i>
       </button>
       <div class="d-flex justify-content-between align-items-start mt-3">
-        <button class="btn btn-dark">
+        <button class="btn btn-dark" (click)="SetBasketValue()">
           <i class="fa fa-shopping-cart"></i> Add to cart
         </button>
         <button routerLink="/shop/product-details/{{Product.id}}" class="btn btn-success">

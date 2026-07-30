@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../../shared/Models/Product';
+import { Basket } from '../../basket/basket';
 
 @Component({
   selector: 'app-shop-item',
@@ -9,4 +10,10 @@ import { IProduct } from '../../shared/Models/Product';
 })
 export class ShopItem {
   @Input() Product: IProduct;
+  constructor(private _service: Basket){
+    
+  }
+  SetBasketValue(){
+    this._service.addItemToBasket(this.Product);
+  }
 }

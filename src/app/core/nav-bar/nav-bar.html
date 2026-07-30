@@ -23,8 +23,10 @@
       </form>
       <ul class="navbar-nav ml-auto align-items-center">
         <li class="nav-item">
-          <a  class="nav-link">
-            <i class="material-icons">shopping_cart</i>
+          <a routerLink="/basket" class="nav-link">
+            <button mat-icon-button [matBadge]="basketCount" matBadgeColor="warn" [matBadgeHidden]="basketCount === 0">
+              <i class="material-icons">shopping_cart</i>
+            </button>
           </a>
         </li>
         <li class="nav-item">
