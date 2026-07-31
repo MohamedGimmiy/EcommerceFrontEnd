@@ -1,9 +1,11 @@
-  <div class="card h-100">
-    <img
-      src="https://localhost:44338/{{Product.photos[0].imageName}}"
-      class="card-img-top"
-      alt=""
-    />
+  <div class="card h-100" style="cursor: pointer;">
+    <a routerLink="/shop/product-details/{{Product.id}}">
+      <img
+        src="https://localhost:44338/{{Product.photos[0].imageName}}"
+        class="card-img-top"
+        alt=""
+      />
+    </a>
     <div class="card-body">
       <div class="thumbnails mb-3">
         @for (item of Product.photos; track $index) {
@@ -24,7 +26,7 @@
           class="thumbnail-img small-img"
         />
       </div>
-      <h5 class="card-title">{{Product.name}}</h5>
+      <h5 class="card-title"><a routerLink="/shop/product-details/{{Product.id}}" class="text-decoration-none">{{Product.name}}</a></h5>
       <p class="card-text">
         {{Product.description}}
       </p>

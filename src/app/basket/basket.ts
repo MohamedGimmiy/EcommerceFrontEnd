@@ -16,8 +16,8 @@ export class Basket {
   constructor() {}
   BaseURL = 'https://localhost:44338/api';
   private basketSource = new BehaviorSubject<IBasket>(null);
-  basket = this.basketSource.asObservable();
-  basketCount$ = this.basket.pipe(map(basket => basket ? basket.basketItems.length : 0));
+  basket$ = this.basketSource.asObservable();
+  basketCount$ = this.basket$.pipe(map(basket => basket ? basket.basketItems.length : 0));
 
   GetBasket(id: string) {
     return this.http.get(`${this.BaseURL}/Baskets/get-basket-item/` + id).pipe(
@@ -43,6 +43,12 @@ export class Basket {
 
   GetCurrentBasketValue() {
     return this.basketSource.value;
+  }
+
+  removeItemFromBasket(itemId: number) {
+    let basket = this.GetCurrentBasketValue();
+    basket.basketItems = basket.basketItems.filter(item => item.id !== itemId);
+    return this.setBasket(basket);
   }
 
   addItemToBasket(product: IProduct, quantity: number = 1) {
