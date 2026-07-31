@@ -17,6 +17,7 @@ export class Basket {
   BaseURL = 'https://localhost:44338/api';
   private basketSource = new BehaviorSubject<IBasket>(null);
   basket = this.basketSource.asObservable();
+  basketCount$ = this.basket.pipe(map(basket => basket ? basket.basketItems.length : 0));
 
   GetBasket(id: string) {
     return this.http.get(`${this.BaseURL}/Baskets/get-basket-item/` + id).pipe(
@@ -50,7 +51,11 @@ export class Basket {
       quantity,
     );
 
-    const basket = this.GetCurrentBasketValue() ?? this.CreateBasket();
+    let basket = this.GetCurrentBasketValue();
+    
+    if(basket.id == null){
+      basket = this.CreateBasket();
+    }
     basket.basketItems = this.AddOrUpdate(
       basket.basketItems,
       itemToAdd,

@@ -42,7 +42,7 @@
                 }
                 <div class="d-flex justify-content-center align-items-center mt-5">
                     <app-pagination [pageSize]="ProductParam.pageSize" 
-                    [totalCount]="totalCount" (pageChanged)="OnChangePage($event)"></app-pagination>
+                    [totalCount]="totalCount" [currentPage]="currentPage" (pageChanged)="OnChangePage($event)"></app-pagination>
                 </div>
             </div>
         </section>

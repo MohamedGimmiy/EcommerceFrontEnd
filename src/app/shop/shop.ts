@@ -55,6 +55,8 @@ export class Shop implements OnInit {
 
   SelectedId(CategoryId:number){
     this.ProductParam.CategoryId = CategoryId;
+    this.ProductParam.pageNumber = 1;
+    this.currentPage = 1;
     this.getAllProducts();
   }
 
@@ -66,12 +68,16 @@ export class Shop implements OnInit {
   ];
   SortingByPrice(sort: Event){
     this.ProductParam.SortSelected = (sort.target as HTMLInputElement).value;
+    this.ProductParam.pageNumber = 1;
+    this.currentPage = 1;
     this.getAllProducts();
   }
 
   // filtering by word
   OnSearch(search: string){
     this.ProductParam.search = search;
+    this.ProductParam.pageNumber = 1;
+    this.currentPage = 1;
     this.getAllProducts();
   }
 
@@ -79,6 +85,8 @@ export class Shop implements OnInit {
     this.ProductParam.search = '';
     this.ProductParam.CategoryId = 0;
     this.ProductParam.SortSelected = '';
+    this.ProductParam.pageNumber = 1;
+    this.currentPage = 1;
     if (this.searchInput) {
       this.searchInput.nativeElement.value = '';
     }
@@ -90,11 +98,6 @@ export class Shop implements OnInit {
 
   @ViewChild('searchInput') searchInput: ElementRef;
   @ViewChild('sortSelected') sortSelected: ElementRef;
-
-  onPageChange(event: { page: number }) {
-    this.currentPage = event.page;
-    this.getAllProducts();
-  }
 
   OnChangePage(page: number){
     this.ProductParam.pageNumber = page;

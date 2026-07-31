@@ -1,6 +1,19 @@
-<pagination 
-    (pageChanged)="OnChangePage($event.page)" 
-    [itemsPerPage]="pageSize" 
-    [totalItems]="totalCount"
-    [boundaryLinks]="true"
-></pagination>
+<nav *ngIf="totalPages > 1">
+  <ul class="pagination mb-0">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="goToPage(1)">&laquo;&laquo;</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="prev()">&laquo;</a>
+    </li>
+    <li class="page-item" *ngFor="let p of pages" [class.active]="p === currentPage">
+      <a class="page-link" (click)="goToPage(p)">{{ p }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="next()">&raquo;</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="goToPage(totalPages)">&raquo;&raquo;</a>
+    </li>
+  </ul>
+</nav>

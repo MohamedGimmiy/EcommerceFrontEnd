@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Basket } from '../../basket/basket';
 
 @Component({
@@ -9,27 +10,19 @@ import { Basket } from '../../basket/basket';
 })
 export class NavBar implements OnInit {
 
-  private basetService = inject(Basket);
-  basketCount = 0;
-  
+  private basketService = inject(Basket);
+  private platformId = inject(PLATFORM_ID);
+  basketCount$ = this.basketService.basketCount$;
+
   ngOnInit(): void {
-    const basketId = localStorage.getItem('basketId');
-    this.basetService.GetBasket(basketId).subscribe({
-      next: (basket) => {
-        console.log(basket)
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
-    
-    this.basetService.basket.subscribe({
-      next: (basket) => {
-        if (basket) {
-          this.basketCount = basket.basketItems.reduce((sum, item) => sum + item.quantity, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      const basketId = localStorage.getItem('basketId');
+      this.basketService.GetBasket(basketId).subscribe({
+        error: (error) => {
+          console.log(error);
         }
-      }
-    });
+      });
+    }
   }
   visible: boolean = false;
   ToggleDropdown(){
