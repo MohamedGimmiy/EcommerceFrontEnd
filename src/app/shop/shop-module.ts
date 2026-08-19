@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Shop } from './shop';
 import { ShopItem } from './shop-item/shop-item';
 import { SharedModule } from '../shared/shared-module';
@@ -17,6 +18,7 @@ import { ShopRoutingModule } from './shop-routing-module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     SharedModule,
     RouterModule,
     NgxImageZoomModule,

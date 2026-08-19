@@ -5,7 +5,11 @@ import { finalize } from 'rxjs/operators';
 
 export const loaderInterceptor: HttpInterceptorFn = (req, next) => {
   const loading = inject(Loading);
-  
+
+  if (req.headers.has('X-Skip-Spinner')) {
+    return next(req.clone({ headers: req.headers.delete('X-Skip-Spinner') }));
+  }
+
   loading.RequestCount++;
   if (loading.RequestCount === 1) {
     loading.loading();

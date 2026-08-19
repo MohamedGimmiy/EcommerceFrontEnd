@@ -22,12 +22,16 @@ export class Basket {
       });
     }
 
-    getTotal(): number {
-      if (!this.basket || !this.basket.basketItems) return 0;
-      return this.basket.basketItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    incrementItem(item: any) {
+      this._service.incrementItemQuantity(item);
+    }
+
+    decrementItem(item: any) {
+      this._service.decrementItemQuantity(item);
     }
 
     deleteItem(id: number) {
       this._service.removeItemFromBasket(id);
     }
+
 }

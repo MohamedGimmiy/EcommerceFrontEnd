@@ -1,5 +1,23 @@
 .basket-container {
-  max-width: 900px;
+  max-width: 1200px;
+}
+
+.basket-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.basket-items {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-summary-container {
+  width: 340px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 24px;
 }
 
 .table {
@@ -64,8 +82,13 @@
 .btn-danger {
   border-radius: 4px;
   padding: 6px 10px;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.05);
   }
+}
+
+.btn-outline-secondary {
+  cursor: pointer;
 }

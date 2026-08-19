@@ -1,0 +1,40 @@
+<div class="order-summary-card">
+  <div class="order-summary-header">
+    Order Summary
+  </div>
+
+  <div class="order-details">
+    <p class="shipping-note">Free shipping on orders over $100</p>
+
+    @if (basketTotals) {
+      <ul class="order-list">
+        <li class="order-row">
+          <span class="order-row-label">Subtotal</span>
+          <span class="order-row-value">{{ basketTotals.subtotal | currency }}</span>
+        </li>
+
+        <li class="order-row">
+          <span class="order-row-label">Shipping</span>
+          <span class="order-row-value">
+            @if (basketTotals.shipping === 0) {
+              Free
+            } @else {
+              {{ basketTotals.shipping | currency }}
+            }
+          </span>
+        </li>
+
+        <li class="order-row total-row">
+          <span class="order-row-label">Total</span>
+          <span class="order-row-value">{{ basketTotals.total | currency }}</span>
+        </li>
+      </ul>
+
+      @if (basketTotals.subtotal > 0 && basketTotals.shipping === 0) {
+        <div class="text-center">
+          <span class="free-shipping-badge">Free Shipping Applied</span>
+        </div>
+      }
+    }
+  </div>
+</div>

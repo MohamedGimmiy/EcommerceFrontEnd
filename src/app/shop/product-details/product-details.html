@@ -33,15 +33,15 @@
  
  
                     <div class="price-area my-4">
-                        <p class="old-price mb-1"><del>{{product?.oldPrice|currency}}</del> <span class="old-price-discount text-danger">(20% off)</span></p>
+                        <p class="old-price mb-1"><del>{{product?.oldPrice|currency}}</del> <span class="old-price-discount text-danger">({{getDiscount()}}% off)</span></p>
                         <p class="new-price text-bold mb-1">{{product?.newPrice|currency}}</p>
-                        <p class="text-danger">quantity : 1</p>
+                        <p class="text-danger">quantity : {{quantity}}</p>
                         <div>
-                            <button class="btn btn-danger text-white">
+                            <button class="btn btn-danger text-white" (click)="decrementQuantity()">
                                 <i class="fa fa-minus"></i>
                             </button>
                             &nbsp;
-                            <button class="btn btn-dark text-white">
+                            <button class="btn btn-dark text-white" (click)="incrementQuantity()">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
@@ -56,17 +56,17 @@
                                 Wishlist</a>
                         </div>
                         <div class="block pt-2">
-                            <button class="shadow btn custom-btn">
+                            <button class="shadow btn custom-btn" (click)="addToCart()">
                                 <i class="fa fa-shopping-cart"></i>
                                 Add to cart</button>
                         </div>
                         <div class="block pt-2">
-                            <button class="shadow btn custom-btn"> 
+                            <button class="shadow btn custom-btn" (click)="shopNow()"> 
                                 <i class="fa fa-shopping-bag"></i>
                                 shopping</button>
                         </div>
                         <div class="block quantity">
-                            <input type="number" class="form-control" id="cart_quantity" value="1" min="0" max="5" placeholder="Enter email" name="cart_quantity">
+                            <input type="number" class="form-control" id="cart_quantity" [(ngModel)]="quantity" min="1" max="5" name="cart_quantity">
                         </div>
                     </div>
  
@@ -97,8 +97,6 @@
                     <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-filter"></i></span> <b>Delivery options</b> </p>
                     <p class="text-secondary">View delivery options here</p>
                 </div>
-                
-             
             </div>
         </div>
     </div>
