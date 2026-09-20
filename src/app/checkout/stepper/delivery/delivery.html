@@ -1,0 +1,31 @@
+<h3 class="step-title">Delivery</h3>
+@if (form) {
+<form [formGroup]="form">
+  <div class="delivery-options">
+<mat-radio-group formControlName="delivery" (change)="SetShippingPrice()" aria-label="Select an option">
+  @for (item of deliveryMethods; track $index) {
+    <mat-radio-button  [value]="item.id">
+      {{ item.name }}
+
+      <p style="font-size: 10px;">{{item.description + " " + item.deliveryTime}}</p>
+      <p style="font-size: 12px; font-weight: bold;">price: {{item.price| currency}}</p>
+    </mat-radio-button>
+  }
+</mat-radio-group>
+    <!-- @for (method of deliveryMethods; track method.value) {
+      <label class="delivery-option" [class.selected]="form.get('method')?.value === method.value">
+        <input type="radio" formControlName="method" [value]="method.value">
+        <div class="delivery-info">
+          <span class="delivery-label">{{ method.label }}</span>
+          <span class="delivery-days">{{ method.days }}</span>
+        </div>
+        <span class="delivery-price">{{ method.price === 0 ? 'Free' : (method.price | currency) }}</span>
+      </label>
+    } -->
+  </div>
+</form>
+}
+<div class="step-actions">
+  <button mat-button (click)="stepper.previous()">Back</button>
+  <button mat-raised-button color="primary" (click)="stepper.next()">Next</button>
+</div>

@@ -1,0 +1,85 @@
+    <div class="container mt-5 basket-container">
+        <div class="basket-layout">
+            <div class="basket-items">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of order?.orderItems; track $index) {
+                            <tr>
+                                <td class="product-cell">
+                                    <a routerLink="/shop/product-details/{{item.productItemId}}">
+                                        <img [src]="'https://localhost:44338/' + item.mainImage" [alt]="item.productName" class="product-img">
+                                    </a>
+                                    <a routerLink="/shop/product-details/{{item.productItemId}}" class="text-decoration-none text-dark">
+                                        <span class="product-name">{{ item.productName }}</span>
+                                    </a>
+                                </td>
+                                <!-- <td class="description-cell">{{ item.desc }}</td> -->
+                                <td>{{ item.price | currency }}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        
+                                        <span class="mx-2">{{ item.quantity }}</span>
+                                        
+                                    </div>
+                                </td>
+                                <td>{{ item.price * item.quantity | currency }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="order-summary-container">
+                <div class="order-summary-card">
+                    <div class="order-summary-header">
+                        Order Summary
+                    </div>
+
+                    <div class="order-details">
+                        <p class="shipping-note">Free shipping on orders over $100</p>
+
+                        @if (order) {
+                        <ul class="order-list">
+                            <li class="order-row">
+                            <span class="order-row-label">Subtotal</span>
+                            <span class="order-row-value">{{ order.subTotal| currency }}</span>
+                            </li>
+
+                            <li class="order-row">
+                            <span class="order-row-label">Shipping</span>
+                            <span class="order-row-value">
+                                {{ order.subTotal - order.total | currency }}
+                            </span>
+                            </li>
+
+                            <li class="order-row">
+                            <span class="order-row-label">Order status</span>
+                            <span class="order-row-value" >
+                                <strong [ngClass]="{
+                                    'text-warning': order.status === 'Pending',
+                                    'text-danger': order.status === 'PaymentFaild',
+                                    'text-success': order.status === 'PaymentReceived'
+                                }">{{ order.status }}</strong> 
+                            </span>
+                            </li>
+
+                            <li class="order-row total-row">
+                            <span class="order-row-label">Total</span>
+                            <span class="order-row-value">{{ order.total | currency }}</span>
+                            </li>
+                        </ul>
+                        }
+                    </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>

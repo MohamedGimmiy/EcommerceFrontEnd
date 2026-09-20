@@ -1,0 +1,72 @@
+.step-title {
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.delivery-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.delivery-option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+  }
+
+  &.selected {
+    border-color: #667eea;
+    background: #f0f3ff;
+  }
+
+  input[type="radio"] {
+    accent-color: #667eea;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.delivery-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.delivery-label {
+  font-weight: 600;
+  color: #1a1a2e;
+  font-size: 15px;
+}
+
+.delivery-days {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.delivery-price {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 15px;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}

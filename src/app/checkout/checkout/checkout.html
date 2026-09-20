@@ -1,1 +1,45 @@
-<p>checkout works!</p>
+<div class="checkout-container">
+  <div class="checkout-layout">
+    <app-stepper></app-stepper>
+
+    <!-- Order Summary Sidebar -->
+    <div class="order-summary">
+      <div class="summary-card">
+        <div class="summary-header">
+          <h3>Order Summary</h3>
+        </div>
+        <div class="summary-body">
+          <div class="summary-items">
+            @for (item of basket?.basketItems; track item.id) {
+              <div class="summary-item">
+                <div class="item-image">
+                  <img [src]="'https://localhost:44338/' + item.image" [alt]="item.name">
+                  <span class="item-qty">{{ item.quantity }}</span>
+                </div>
+                <div class="item-details">
+                  <span class="item-name">{{ item.name }}</span>
+                  <span class="item-category">{{ item.category }}</span>
+                </div>
+                <span class="item-price">{{ (item.price * item.quantity) | currency }}</span>
+              </div>
+            }
+          </div>
+          <div class="summary-totals">
+            <div class="total-row">
+              <span>Subtotal</span>
+              <span>{{ basketTotals?.subtotal | currency }}</span>
+            </div>
+            <div class="total-row">
+              <span>Shipping</span>
+              <span>{{ basketTotals?.shipping === 0 ? 'Free' : (basketTotals?.shipping | currency) }}</span>
+            </div>
+            <div class="total-row grand-total">
+              <span>Total</span>
+              <span>{{ basketTotals?.total | currency }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import {
   IBasketTotal,
 } from '../shared/Models/Basket';
 import { IProduct } from '../shared/Models/Product';
+import { Delivery } from '../shared/Models/Delivery';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class Basket {
   basketCount$ = this.basket$.pipe(map(basket => basket ? basket.basketItems.length : 0));
   basketSourceTotal  = new BehaviorSubject<IBasketTotal>({shipping: 0, subtotal: 0, total: 0});
   basketTotal$ = this.basketSourceTotal.asObservable();
+  shipPrice:number=0;
   calculateTotals() {
     const basket = this.GetCurrentBasketValue();
     if (!basket || !basket.basketItems) {
@@ -28,9 +30,13 @@ export class Basket {
       return;
     }
     const subtotal = basket.basketItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = subtotal > 100 ? 0 : 10;
+    const shipping = this.shipPrice;
     const total = subtotal + shipping;
     this.basketSourceTotal.next({shipping, subtotal, total});
+  }
+  SetShippingPrice(delivery:Delivery){
+    this.shipPrice=delivery.price;
+    this.calculateTotals();
   }
   GetBasket(id: string) {
     return this.http.get(`${this.BaseURL}/Baskets/get-basket-item/` + id).pipe(

@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-container">
+                <table class="table table-hover custom-table">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (order of orders; track $index) {
+                            <tr>
+                                <th routerLink="/orders/item" [queryParams]="{id:order.id}">#{{ order.id }}</th>
+                                <td>
+                                    <button type="button" class="image-container" (click)="OpenModal(order.orderItems)" [attr.aria-label]="'View images for order ' + order.id">
+                                        <img src="https://localhost:44338/{{ getFirstimageOrderItem(order.orderItems) }}" [alt]="order.orderItems[0].productName" class="product-img">
+                                        @if (order.orderItems.length > 1) {
+                                            <span class="more-image">+{{ order.orderItems.length - 1 }} more</span> 
+
+                                        }
+                                    </button>
+                                </td>
+                                <td>
+                                    {{ order.orderDate | date }}
+                                </td>
+                                <td>{{order.status}}</td>
+                                <td>{{order.total | currency}}</td>
+                                <td>
+                                    <button routerLink="/orders/item" [queryParams]="{id:order.id}" class="btn btn-info">
+                                        <i class="fa fa-info"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (isModalOpen) {
+    <div class="modal-backdrop fade show" (click)="closeModal()"></div>
+    <div class="modal fade show" id="staticBackdrop" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="orderImagesModalLabel" style="display: block;" (click)="closeModal()">
+        <div class="modal-dialog modal-dialog-centered modal-lg" (click)="$event.stopPropagation()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderImagesModalLabel">Order item images</h5>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="order-images-grid">
+                        @for (image of UrlImageModal; track $index) {
+                            <img [src]="'https://localhost:44338/' + image" alt="Order item" class="modal-product-img">
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

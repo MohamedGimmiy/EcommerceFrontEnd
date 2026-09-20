@@ -1,0 +1,30 @@
+.step-title {
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.form-row {
+  margin-bottom: 4px;
+}
+
+.form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}

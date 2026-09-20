@@ -1,0 +1,48 @@
+<h3 class="step-title">Shipping Address</h3>
+@if (form) {
+  <div class="d-flex justify-content-between mt-3 mb-3">
+
+  <button mat-raised-button (click)="next()">Save Change Address</button>
+  <button (click)="canEdit=!canEdit" class="btn" [ngClass]="{'btn-success' : canEdit== true, 'btn-danger': canEdit == false}">
+    {{!canEdit?'Edit-disabled': 'Edit-enabled'}}
+  </button>
+  </div>
+
+  <form [formGroup]="form">
+  <div class="form-row-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput [readonly]="!canEdit" formControlName="firstName" placeholder="John">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput  [readonly]="!canEdit" formControlName="lastName" placeholder="Doe">
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Street Address</mat-label>
+      <input matInput  [readonly]="!canEdit" formControlName="street" placeholder="123 Main St">
+    </mat-form-field>
+  </div>
+  <div class="form-row-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input matInput  [readonly]="!canEdit" formControlName="city" placeholder="New York">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>State</mat-label>
+      <input matInput  [readonly]="!canEdit" formControlName="state" placeholder="NY">
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Zip Code</mat-label>
+      <input matInput  [readonly]="!canEdit" formControlName="zipCode" placeholder="10001">
+    </mat-form-field>
+  </div>
+</form>
+}
+<div class="step-actions">
+  <button (click)="go()" mat-raised-button color="primary"  [disabled]="form?.invalid">Next</button>
+</div>

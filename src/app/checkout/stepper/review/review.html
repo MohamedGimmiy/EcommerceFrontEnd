@@ -1,0 +1,36 @@
+<h3 class="step-title">Review Your Order</h3>
+
+<div class="review-items">
+  <h4>Order Items</h4>
+  @for (item of basket?.basketItems; track item.id) {
+    <div class="review-item">
+      <div class="item-info">
+        <div class="item-details">
+          <span class="item-name">{{ item.name }}</span>
+          <span class="item-qty">Qty: {{ item.quantity }}</span>
+        </div>
+      </div>
+      <span class="item-price">{{ (item.price * item.quantity) | currency }}</span>
+    </div>
+  }
+</div>
+
+<div class="review-totals">
+  <div class="total-row">
+    <span>Subtotal</span>
+    <span>{{ basketTotals?.subtotal | currency }}</span>
+  </div>
+  <div class="total-row">
+    <span>Shipping</span>
+    <span>{{ basketTotals?.shipping === 0 ? 'Free' : (basketTotals?.shipping | currency) }}</span>
+  </div>
+  <div class="total-row grand-total">
+    <span>Total</span>
+    <span>{{ basketTotals?.total | currency }}</span>
+  </div>
+</div>
+
+<div class="step-actions">
+  <button mat-button (click)="stepper?.previous()">Back</button>
+  <button mat-raised-button color="accent" (click)="placeOrder()" [disabled]="placing">Place Order</button>
+</div>

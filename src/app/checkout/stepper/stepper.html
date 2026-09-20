@@ -1,0 +1,18 @@
+<mat-stepper linear #stepperRef>
+  <mat-step [stepControl]="addressForm" label="Address">
+    <app-address [stepper]="stepper" [form]="addressForm"></app-address>
+  </mat-step>
+
+  <mat-step [stepControl]="deliveryForm" label="Delivery">
+    <app-delivery [stepper]="stepper" [form]="deliveryForm"></app-delivery>
+  </mat-step>
+  <!-- <mat-step [stepControl]="paymentForm" label="Payment">
+    <app-payment [stepper]="stepper" [form]="paymentForm"></app-payment>
+  </mat-step> -->
+  <mat-step label="payment-checkout">
+    <app-payment [Address] = "addressForm" [delivery]="deliveryForm"></app-payment>
+  </mat-step>
+  <mat-step label="Review">
+    <app-review [stepper]="stepper"></app-review>
+  </mat-step>
+</mat-stepper>

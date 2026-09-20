@@ -10,6 +10,7 @@ import { HomeModule } from './home/home-module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { loaderInterceptor } from './core/Interceptor/loader-interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { credentialsInterceptor } from './core/Interceptor/credentials-interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     provideBrowserGlobalErrorListeners(),
     provideClientHydration(withEventReplay()),
     provideHttpClient(
-      withInterceptors([loaderInterceptor])
+      withInterceptors([loaderInterceptor, credentialsInterceptor])
     ),
   ],
   bootstrap: [App]
