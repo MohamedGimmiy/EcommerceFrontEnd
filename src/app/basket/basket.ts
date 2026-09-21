@@ -23,6 +23,12 @@ export class Basket {
   basketSourceTotal  = new BehaviorSubject<IBasketTotal>({shipping: 0, subtotal: 0, total: 0});
   basketTotal$ = this.basketSourceTotal.asObservable();
   shipPrice:number=0;
+
+  deleteBasket(){
+    this.basketSource.next(null);
+    this.basketSourceTotal.next(null);
+    localStorage.removeItem('basketId');
+  }
   calculateTotals() {
     const basket = this.GetCurrentBasketValue();
     if (!basket || !basket.basketItems) {
